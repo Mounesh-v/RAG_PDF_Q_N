@@ -19,13 +19,7 @@ export default function ChatInput({ onSend, isDisabled }) {
   };
 
   return (
-    <div className="flex items-end gap-2 rounded-3xl border border-lavender-line bg-cream-soft p-2.5 shadow-[0_28px_60px_-52px_rgba(37,35,41,0.9)] transition-colors duration-200 focus-within:border-mauve/60"    >
-      <span
-        aria-hidden="true"
-        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-ink-faint"
-      >
-        <Paperclip className="h-5 w-5" />
-      </span>
+    <div className="flex items-end gap-2 rounded-3xl border border-lavender-line bg-cream-soft p-2.5 shadow-[0_28px_60px_-52px_rgba(37,35,41,0.9)] transition-colors duration-200 focus-within:border-mauve/60">
       <textarea
         value={value}
         onChange={(e) => setValue(e.target.value)}
