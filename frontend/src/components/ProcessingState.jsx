@@ -27,21 +27,23 @@ export default function ProcessingState({ isComplete, fileName }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 0.35 }}
-      className="glass card-border rounded-2xl p-8"
+      className="card-border rounded-3xl bg-cream-soft p-6 shadow-[0_36px_70px_-58px_rgba(37,35,41,0.9)] sm:p-8"
     >
       <div className="mb-6 flex items-center gap-3">
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-accent-500 to-cyan-400 shadow-lg shadow-accent-500/30">
-          <Loader2 className="h-5 w-5 animate-spin text-white" />
+        <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-lavender-line bg-lavender-light">
+          <Loader2 className="h-5 w-5 animate-spin text-mauve-deep" />
         </div>
         <div>
-          <p className="text-base font-semibold text-white">Analyzing your notes…</p>
-          <p className="text-xs text-mist-400">
+          <p className="font-serif text-lg font-semibold text-ink">
+            Analyzing your notes…
+          </p>
+          <p className="text-xs text-ink-faint">
             {fileName ? `${fileName} is being indexed` : "Preparing your document"}
           </p>
         </div>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-2">
         {STEPS.map((step, i) => {
           const done = isComplete || i < activeStep;
           const active = !isComplete && i === activeStep;
@@ -52,17 +54,17 @@ export default function ProcessingState({ isComplete, fileName }) {
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.06 }}
-              className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-colors ${
-                active ? "bg-accent-500/10" : ""
+              className={`flex items-center gap-3 rounded-xl px-3 py-2 transition-colors duration-200 ${
+                active ? "bg-lavender-light" : ""
               }`}
             >
               <span
-                className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${
+                className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border transition-colors duration-200 ${
                   done
-                    ? "bg-emerald-500/20 text-emerald-300"
+                    ? "border-olive/40 bg-olive/20 text-olive-deep"
                     : active
-                      ? "bg-accent-500/25 text-accent-300"
-                      : "bg-white/5 text-mist-500"
+                      ? "border-lavender-line bg-white text-mauve-deep"
+                      : "border-ink/10 bg-cream text-ink-faint"
                 }`}
               >
                 {done ? (
@@ -75,11 +77,11 @@ export default function ProcessingState({ isComplete, fileName }) {
               </span>
               <span
                 className={`text-sm ${
-                  done
-                    ? "text-mist-300"
-                    : active
-                      ? "font-medium text-white"
-                      : "text-mist-500"
+                  active
+                    ? "font-medium text-ink"
+                    : done
+                      ? "text-ink-soft"
+                      : "text-ink-faint"
                 }`}
               >
                 {step.label}
@@ -89,7 +91,7 @@ export default function ProcessingState({ isComplete, fileName }) {
         })}
       </div>
 
-      <p className="mt-6 text-xs text-mist-500">
+      <p className="mt-6 text-xs text-ink-faint">
         This can take a moment while your document is indexed into the knowledge base.
       </p>
     </motion.div>

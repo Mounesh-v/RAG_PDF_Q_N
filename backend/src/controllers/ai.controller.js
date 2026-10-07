@@ -7,6 +7,7 @@ export const askAI = async (req, res) => {
     const docs = await vectorStore.similaritySearch(input, 5);
 
     const context = docs.map((d) => d.pageContent).join("/n");
+    const faqContext = "";
     const response = await llm.invoke([
       new SystemMessage(`
 You are StudyRAG, an AI study mentor and FAQ assistant that helps students understand and prepare for exams using ONLY the content from their uploaded PDF notes and the provided FAQ context.
